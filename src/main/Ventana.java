@@ -8,6 +8,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 public class Ventana extends JFrame{
@@ -80,7 +81,7 @@ public class Ventana extends JFrame{
 		email_input.setBounds(70, 123, 260, 30);
 		login_container.add(email_input);
 		
-		JTextField password_input = new JTextField();
+		JPasswordField password_input = new JPasswordField();
 		password_input.setBounds(70, 185, 260, 30);
 		login_container.add(password_input);
 		
