@@ -6,6 +6,8 @@ public class Main {
 		// TODO Auto-generated method stub
 
 		Ventana miVentana = new Ventana();
+		
+		System.out.println("hola");
 	}
 
 }
