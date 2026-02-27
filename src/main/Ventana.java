@@ -14,6 +14,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -36,6 +38,16 @@ public class Ventana extends JFrame{
 		this.getContentPane().setBackground(Color.decode("#4D7C8A"));
 		//this.setBounds(200, 200, 500, 500);
 		
+		//this.login();
+		//this.registro();
+		this.users();
+				
+		
+		this.repaint();
+		
+	}
+	
+	public void login() {
 		JPanel login_container = new JPanel();
 		login_container.setSize(400, 550);
 		login_container.setLocation(50, 50);
@@ -102,7 +114,9 @@ public class Ventana extends JFrame{
 		access_btn.setBounds(100, 275, 200, 40);
 		access_btn.setFont(new Font("Segoe UI Semibold", Font.ITALIC, 17));
 		login_container.add(access_btn);
-		
+	}
+	
+	public void registro() {
 		JPanel rgs_container = new JPanel();
 		rgs_container.setBounds(500, 50, 400, 550);
 		rgs_container.setOpaque(true);
@@ -138,6 +152,7 @@ public class Ventana extends JFrame{
 		JTextArea name_text = new JTextArea("", 10, 10);
 		name_text.setLocation(50, 120);	
 		name_text.setSize(300, 30);
+		name_text.setBackground(Color.decode("#dce3e6"));
 		rgs_container.add(name_text);
 		
 		//bio
@@ -155,6 +170,7 @@ public class Ventana extends JFrame{
 		JTextArea bio_text = new JTextArea("", 10, 10);
 		bio_text.setLocation(50, 195);	
 		bio_text.setSize(300, 80);
+		bio_text.setBackground(Color.decode("#dce3e6"));
 		rgs_container.add(bio_text);
 		
 		//label preferences
@@ -220,6 +236,7 @@ public class Ventana extends JFrame{
 		
 		JComboBox colonias_combo = new JComboBox(colonias);
 		colonias_combo.setBounds(50, 430, 300, 30);
+		colonias_combo.setBackground(Color.decode("#dce3e6"));
 		colonias_combo.setFont(new Font("Segoe Print",Font.BOLD,12));
 		rgs_container.add(colonias_combo);
 		
@@ -229,10 +246,65 @@ public class Ventana extends JFrame{
 		register_btn.setFont(new Font("Segoe UI Semibold", Font.ITALIC, 17));
 		register_btn.setBorder(BorderFactory.createLineBorder(Color.decode("#18272b"), 4, true));
 		rgs_container.add(register_btn);
+	}
+	
+	public void users() {
+		JPanel panel_users = new JPanel();
+		panel_users.setBounds(50, 50, 850, 550);
+		panel_users.setOpaque(true);
+		panel_users.setBackground(Color.white);
+		//panel_users.setLayout(null);
+		//panel_users.setBorder(BorderFactory.createLineBorder(Color.decode("#18272b"), 4, true));
+		this.add(panel_users);
+		
+		JLabel tag_title = new JLabel();
+		tag_title.setText("Usuarios");
+		tag_title.setSize(180,35);
+		tag_title.setLocation(110, 35);
+		tag_title.setFont(new Font("Forte",Font.PLAIN,35));
+		tag_title.setForeground(Color.decode("#18272b"));
+		tag_title.setVerticalAlignment(JLabel.CENTER);
+		tag_title.setHorizontalAlignment(JLabel.CENTER);
+		panel_users.add(tag_title);
+		
+		/*JLabel tag_email = new JLabel();
+		tag_email.setText("Usuarios");
+		tag_email.setBounds(70, 98, 150, 30);
+		//tag_user.setBackground(Color.white);
+		//tag_user.setOpaque(true);
+		tag_email.setFont(new Font("Segoe Print",Font.BOLD,12));
+		panel_users.add(tag_email);*/
+		
+		String [] table_head = {"No. Control", "Nombre", "Apellidos", "Correo electrónico", "Semestre", "Carrera", "Acciones"};
+		
+		Object [][] table_body = {
+			    {"20451234", "Luis", "Hernández", "luis.hdz@example.com", "3", "Ingeniería en Sistemas", "Acciones"},
+			    {"20457891", "María", "Gómez", "maria.gmz@example.com", "5", "Arquitectura", "Acciones"},
+			    {"20453422", "Jorge", "Ramírez", "jorge.rz@example.com", "2", "Contaduría", "Acciones"},
+			    {"20458977", "Ana", "López", "ana.lp@example.com", "7", "Administración", "Acciones"},
+			    {"20452311", "Carlos", "Martínez", "carlos.mtz@example.com", "4", "Ingeniería Civil", "Acciones"},
+			    {"20455678", "Fernanda", "Soto", "fer.soto@example.com", "6", "Diseño Gráfico", "Acciones"},
+			    {"20459832", "Ricardo", "Pérez", "ricardo.pz@example.com", "1", "Ingeniería Mecánica", "Acciones"},
+			    {"20454490", "Daniela", "Vargas", "daniela.vg@example.com", "8", "Psicología", "Acciones"},
+			    {"20457701", "Héctor", "Castro", "hector.cs@example.com", "9", "Derecho", "Acciones"},
+			    {"20456642", "Sofía", "Navarro", "sofia.nv@example.com", "3", "Medicina", "Acciones"},
+			    {"20453387", "Miguel", "Ortega", "miguel.og@example.com", "10", "Ingeniería Industrial", "Acciones"},
+			    {"20451298", "Paola", "Reyes", "paola.ry@example.com", "2", "Mercadotecnia", "Acciones"}
+		};
+		
+		
+		JTable students = new JTable(table_body,table_head);
+		
+		JScrollPane final_table = new JScrollPane(students);
+		final_table.setSize(700, 150);
+		final_table.setLocation(100, 100);
+		
+		panel_users.add(final_table);
+		
+			
 		
 		
 		
-		this.repaint();
 		
 	}
 }
