@@ -232,7 +232,6 @@ public class Ventana extends JFrame{
 		
 		
 		
-		
 		this.repaint();
 		
 	}
