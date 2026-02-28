@@ -18,6 +18,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 public class Ventana extends JFrame{
 
@@ -33,10 +34,7 @@ public class Ventana extends JFrame{
 		this.setLocationRelativeTo(null);
 		this.setTitle("Hola");
 		this.setLayout(null);
-		//this.setBackground(Color.red);
-		//this.setOpacity(1);
 		this.getContentPane().setBackground(Color.decode("#4D7C8A"));
-		//this.setBounds(200, 200, 500, 500);
 		
 		//this.login();
 		//this.registro();
@@ -129,8 +127,6 @@ public class Ventana extends JFrame{
 		JLabel tag_register = new JLabel();
 		tag_register.setText("Registro");
 		tag_register.setBounds(50, 35, 300, 40);
-		//tag_register.setBackground(Color.white);
-		//tag_register.setOpaque(true);
 		tag_register.setFont(new Font("Forte",Font.PLAIN,35));
 		tag_register.setForeground(Color.decode("#18272b"));
 		tag_register.setVerticalAlignment(JLabel.CENTER);
@@ -251,31 +247,51 @@ public class Ventana extends JFrame{
 	public void users() {
 		JPanel panel_users = new JPanel();
 		panel_users.setBounds(50, 50, 850, 550);
-		panel_users.setOpaque(true);
 		panel_users.setBackground(Color.white);
-		//panel_users.setLayout(null);
-		//panel_users.setBorder(BorderFactory.createLineBorder(Color.decode("#18272b"), 4, true));
+		panel_users.setOpaque(true);
+		panel_users.setLayout(null);
 		this.add(panel_users);
 		
-		JLabel tag_title = new JLabel();
-		tag_title.setText("Usuarios");
-		tag_title.setSize(180,35);
-		tag_title.setLocation(110, 35);
-		tag_title.setFont(new Font("Forte",Font.PLAIN,35));
-		tag_title.setForeground(Color.decode("#18272b"));
-		tag_title.setVerticalAlignment(JLabel.CENTER);
-		tag_title.setHorizontalAlignment(JLabel.CENTER);
-		panel_users.add(tag_title);
+		JLabel title_users = new JLabel("Usuarios");
+		title_users.setBounds(350, 35, 180, 40);
+		title_users.setFont(new Font("Forte",Font.PLAIN,35));
+		title_users.setForeground(Color.decode("#18272b"));
+		title_users.setHorizontalAlignment(JLabel.CENTER);
+		panel_users.add(title_users);
 		
-		/*JLabel tag_email = new JLabel();
-		tag_email.setText("Usuarios");
-		tag_email.setBounds(70, 98, 150, 30);
-		//tag_user.setBackground(Color.white);
-		//tag_user.setOpaque(true);
-		tag_email.setFont(new Font("Segoe Print",Font.BOLD,12));
-		panel_users.add(tag_email);*/
+		JLabel tag_users = new JLabel("Usuarios");
+		tag_users.setBounds(70, 98, 150, 30);
+		tag_users.setBackground(Color.decode("#dce3e6"));
+		tag_users.setOpaque(true);
+		tag_users.setFont(new Font("Segoe Print",Font.BOLD,18));
+		tag_users.setHorizontalAlignment(JLabel.CENTER);
+		panel_users.add(tag_users);
 		
-		String [] table_head = {"No. Control", "Nombre", "Apellidos", "Correo electrónico", "Semestre", "Carrera", "Acciones"};
+		JLabel tag_numusers = new JLabel("24");
+		tag_numusers.setBounds(70, 120, 150, 30);
+		tag_numusers.setBackground(Color.decode("#dce3e6"));
+		tag_numusers.setOpaque(true);
+		tag_numusers.setFont(new Font("Segoe Print",Font.BOLD,18));
+		tag_numusers.setHorizontalAlignment(JLabel.CENTER);
+		panel_users.add(tag_numusers);
+		
+		JButton donwload_btn = new JButton("Descargar");
+		donwload_btn.setBounds(570, 150, 100, 30);
+		donwload_btn.setFont(new Font("Segoe Print", Font.BOLD, 12));
+		donwload_btn.setHorizontalAlignment(JLabel.CENTER);
+		donwload_btn.setBackground(Color.decode("#dce3e6"));
+		donwload_btn.setBorder(BorderFactory.createLineBorder(Color.decode("#18272b"), 2, true));
+		panel_users.add(donwload_btn);
+		
+		JButton addd_btn = new JButton("Añadir");
+		addd_btn.setBounds(685, 150, 90, 30);
+		addd_btn.setFont(new Font("Segoe Print", Font.BOLD, 12));
+		addd_btn.setHorizontalAlignment(JLabel.CENTER);
+		addd_btn.setBackground(Color.decode("#dce3e6"));
+		addd_btn.setBorder(BorderFactory.createLineBorder(Color.decode("#18272b"), 2, true));
+		panel_users.add(addd_btn);
+			
+		String [] table_head = {"No. Control", "Nombre", "Apellidos", "Correo electrónico", "Semestre", "Carrera", "Acciones"};	
 		
 		Object [][] table_body = {
 			    {"20451234", "Luis", "Hernández", "luis.hdz@example.com", "3", "Ingeniería en Sistemas", "Acciones"},
@@ -289,19 +305,42 @@ public class Ventana extends JFrame{
 			    {"20457701", "Héctor", "Castro", "hector.cs@example.com", "9", "Derecho", "Acciones"},
 			    {"20456642", "Sofía", "Navarro", "sofia.nv@example.com", "3", "Medicina", "Acciones"},
 			    {"20453387", "Miguel", "Ortega", "miguel.og@example.com", "10", "Ingeniería Industrial", "Acciones"},
-			    {"20451298", "Paola", "Reyes", "paola.ry@example.com", "2", "Mercadotecnia", "Acciones"}
+			    {"20451298", "Paola", "Reyes", "paola.ry@example.com", "2", "Mercadotecnia", "Acciones"},
+			    {"20450001", "Andrés", "Morales", "andres.mr@example.com", "4", "Ingeniería en Sistemas", "Acciones"},
+			    {"20450002", "Valeria", "Rojas", "valeria.rj@example.com", "6", "Arquitectura", "Acciones"},
+			    {"20450003", "Emilio", "Silva", "emilio.sl@example.com", "1", "Contaduría", "Acciones"},
+			    {"20450004", "Camila", "Torres", "camila.tr@example.com", "8", "Administración", "Acciones"},
+			    {"20450005", "Diego", "Flores", "diego.fl@example.com", "5", "Ingeniería Civil", "Acciones"},
+			    {"20450006", "Ximena", "Mendoza", "ximena.md@example.com", "7", "Diseño Gráfico", "Acciones"},
+			    {"20450007", "Iván", "Ruiz", "ivan.rz@example.com", "3", "Ingeniería Mecánica", "Acciones"},
+			    {"20450008", "Lucía", "Aguilar", "lucia.ag@example.com", "9", "Psicología", "Acciones"},
+			    {"20450009", "Bruno", "Salazar", "bruno.sz@example.com", "2", "Derecho", "Acciones"},
+			    {"20450010", "Regina", "Peña", "regina.pn@example.com", "10", "Medicina", "Acciones"},
+			    {"20450011", "Sebastián", "Cruz", "sebastian.cz@example.com", "4", "Ingeniería Industrial", "Acciones"},
+			    {"20450012", "Natalia", "Campos", "natalia.cm@example.com", "6", "Mercadotecnia", "Acciones"}
 		};
 		
+		DefaultTableModel model = new DefaultTableModel(table_body, table_head) {
+	        @Override
+	        public boolean isCellEditable(int row, int column) {
+	            return false;
+	        }
+	    };
 		
-		JTable students = new JTable(table_body,table_head);
+		JTable students = new JTable(model);
+		
+		students.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+		
+		students.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 12));
+	    students.getTableHeader().setBackground(Color.decode("#4D7C8A"));
+	    students.getTableHeader().setForeground(Color.white);
 		
 		JScrollPane final_table = new JScrollPane(students);
-		final_table.setSize(700, 150);
-		final_table.setLocation(100, 100);
+		final_table.setSize(700, 310);
+		final_table.setLocation(75, 200);
 		
 		panel_users.add(final_table);
-		
-			
+
 		
 		
 		
