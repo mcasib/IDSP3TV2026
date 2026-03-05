@@ -9,6 +9,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
@@ -77,9 +78,9 @@ public class Ventana extends JFrame{
 		JMenuItem opt5_mi = new JMenuItem("Guardar como");
 		menu2.add(opt5_mi);
 		
-		//this.login();
+		this.login();
 		//this.registro();
-		this.users();
+		//this.users();
 				
 		this.setVisible(true);
 		this.repaint();
@@ -87,72 +88,88 @@ public class Ventana extends JFrame{
 	}
 	
 	public void login() {
-		JPanel login_container = new JPanel();
-		login_container.setSize(400, 550);
-		login_container.setLocation(50, 50);
-		login_container.setBackground(Color.decode("#7F9C96"));
+		ImageIcon background = new ImageIcon(getClass().getResource("/images/fondo login.png"));
+		
+		//JPanel login_container = new JPanel();
+		JLabel login_container = new JLabel(background);
+		//login_container.setSize(400, 550);
+		login_container.setSize(850, 550);
+		login_container.setLocation(50, 40);
+		//login_container.setBackground(Color.decode("#7F9C96"));
 		login_container.setLayout(null);
-		login_container.setBorder(BorderFactory.createLineBorder(Color.decode("#18272b"), 4, true));
+		login_container.setBorder(BorderFactory.createLineBorder(Color.decode("#dce3e6"), 3, true));
 		this.add(login_container);
+
 		
 		//AÑADIENDO ELEMENTOS
 		JLabel tag_title = new JLabel();
-		tag_title.setText("Bienvenido");
-		tag_title.setSize(180,35);
-		tag_title.setLocation(110, 35);
-		//tag_title.setBackground(Color.white);
+		tag_title.setText("Iniciar sesión");
+		tag_title.setSize(300, 40);
+		tag_title.setLocation(280, 125);
 		//tag_title.setBackground(Color.decode("#9999ff"));
 		//tag_title.setOpaque(true);
 		tag_title.setFont(new Font("Forte",Font.PLAIN,35));
-		tag_title.setForeground(Color.decode("#18272b"));
-		tag_title.setVerticalAlignment(JLabel.CENTER);
+		tag_title.setForeground(Color.white);
 		tag_title.setHorizontalAlignment(JLabel.CENTER);
 		login_container.add(tag_title);
-		
+
 		JLabel tag_email = new JLabel();
 		tag_email.setText("Email");
-		tag_email.setBounds(70, 98, 150, 30);
-		//tag_user.setBackground(Color.white);
-		//tag_user.setOpaque(true);
+		tag_email.setBounds(300, 180, 150, 30);
 		tag_email.setFont(new Font("Segoe Print",Font.BOLD,12));
+		tag_email.setForeground(Color.decode("#ebf0f2"));
 		login_container.add(tag_email);
 		
 		JLabel tag_password = new JLabel();
 		tag_password.setText("Contraseña");
-		tag_password.setBounds(70, 160, 150, 30);
+		tag_password.setBounds(300, 250, 150, 30);
 		tag_password.setFont(new Font("Segoe Print",Font.BOLD,12));
+		tag_password.setForeground(Color.decode("#ebf0f2"));
 		login_container.add(tag_password);
 		
 		JLabel tag_rememberme = new JLabel();
 		tag_rememberme.setText("Recuerdame");
-		tag_rememberme.setBounds(87, 220, 150, 30);
+		tag_rememberme.setBounds(320, 314, 150, 30);
 		tag_rememberme.setFont(new Font("Segoe Print",Font.PLAIN,10));
+		tag_rememberme.setForeground(Color.decode("#dce3e6"));
 		login_container.add(tag_rememberme);
 		
 		JLabel tag_forgot = new JLabel();
 		tag_forgot.setText("¿Olvidaste tu contraseña?");
-		tag_forgot.setBounds(200, 220, 150, 30);
+		tag_forgot.setBounds(420, 314, 150, 30);
 		tag_forgot.setFont(new Font("Segoe Print",Font.PLAIN,10));
+		tag_forgot.setForeground(Color.decode("#dce3e6"));
 		login_container.add(tag_forgot);
 		
 		JTextField email_input = new JTextField();
-		email_input.setBounds(70, 123, 260, 30);
+		email_input.setBounds(300, 210, 260, 30);
 		login_container.add(email_input);
 		
 		JPasswordField password_input = new JPasswordField();
-		password_input.setBounds(70, 185, 260, 30);
+		password_input.setBounds(300, 280, 260, 30);
 		login_container.add(password_input);
 		
 		JCheckBox rememberme = new JCheckBox();
-		rememberme.setBounds(66, 215, 140, 40);
+		rememberme.setBounds(296, 310, 140, 40);
 		rememberme.setOpaque(false);
 		login_container.add(rememberme);
 		
 		JButton access_btn = new JButton();
 		access_btn.setText("Acceder");
-		access_btn.setBounds(100, 275, 200, 40);
+		access_btn.setBounds(330, 365, 200, 40);
 		access_btn.setFont(new Font("Segoe UI Semibold", Font.ITALIC, 17));
 		login_container.add(access_btn);
+		
+		ImageIcon small_image = new ImageIcon(getClass().getResource("/images/fondo login.png"));
+		Image img = small_image.getImage().getScaledInstance(550, 370, Image.SCALE_SMOOTH);
+		ImageIcon small_scaled = new ImageIcon(img);
+
+		JLabel img_small = new JLabel(small_scaled);
+		img_small.setSize(550, 370);
+		img_small.setLocation(150, 90);
+		//img_small.setBounds(150, 100, 450, 550);
+
+		login_container.add(img_small);
 	}
 	
 	public void registro() {
@@ -287,7 +304,7 @@ public class Ventana extends JFrame{
 	
 	public void users() {
 		JPanel panel_users = new JPanel();
-		panel_users.setBounds(50, 50, 850, 550);
+		panel_users.setBounds(50, 40, 850, 550);
 		panel_users.setBackground(Color.white);
 		panel_users.setOpaque(true);
 		panel_users.setLayout(null);
