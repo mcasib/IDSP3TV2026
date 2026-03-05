@@ -3,7 +3,10 @@ package main;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Image;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -37,6 +40,16 @@ public class Ventana extends JFrame{
 		this.setTitle("Hola");
 		this.setLayout(null);
 		this.getContentPane().setBackground(Color.decode("#4D7C8A"));
+		
+		try {
+
+			Image iconImage = ImageIO.read(getClass().getResource("/images/7592746.png"));
+			
+			this.setIconImage(iconImage);
+			
+		} catch	(IOException e) {
+			e.printStackTrace();
+		}
 		
 		JMenuBar barra = new JMenuBar();
 		this.setJMenuBar(barra);
