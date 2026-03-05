@@ -11,6 +11,9 @@ import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
@@ -24,8 +27,7 @@ public class Ventana extends JFrame{
 
 	public Ventana() {
 		
-		//configuraciones basicas
-		this.setVisible(true);
+		//configuraciones básicas
 		this.setSize(960, 680);
 		//this.setLocation(200, 200);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -36,11 +38,37 @@ public class Ventana extends JFrame{
 		this.setLayout(null);
 		this.getContentPane().setBackground(Color.decode("#4D7C8A"));
 		
+		JMenuBar barra = new JMenuBar();
+		this.setJMenuBar(barra);
+		
+		JMenu menu1 = new JMenu("Archivo");
+		barra.add(menu1);
+		
+		JMenuItem opt1_mi = new JMenuItem("Abrir");
+		menu1.add(opt1_mi);
+		
+		JMenuItem opt2_mi = new JMenuItem("Nuevo");
+		menu1.add(opt2_mi);
+		
+		JMenuItem opt3_mi = new JMenuItem("Cerrar");
+		menu1.add(opt3_mi);
+		
+		menu1.addSeparator();
+		
+		JMenu menu2 = new JMenu("Guardar");
+		menu1.add(menu2);
+		
+		JMenuItem opt4_mi = new JMenuItem("Guardar");
+		menu2.add(opt4_mi);
+		
+		JMenuItem opt5_mi = new JMenuItem("Guardar como");
+		menu2.add(opt5_mi);
+		
 		//this.login();
 		//this.registro();
 		this.users();
 				
-		
+		this.setVisible(true);
 		this.repaint();
 		
 	}
