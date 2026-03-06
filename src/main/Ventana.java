@@ -82,6 +82,9 @@ public class Ventana extends JFrame{
 		//this.registro();
 		//this.users();
 		this.calculadora();
+		//this.login();
+		//this.registro();
+		//this.users();
 				
 		this.setVisible(true);
 		this.repaint();
@@ -399,6 +402,7 @@ public class Ventana extends JFrame{
 		final_table.setLocation(75, 200);
 		
 		panel_users.add(final_table);
+
 	
 	}
 	
@@ -443,6 +447,7 @@ public class Ventana extends JFrame{
 				cor_y += 110;
 			}
 		}			
+
 		
 	}
 }
