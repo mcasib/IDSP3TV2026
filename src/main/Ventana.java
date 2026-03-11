@@ -3,6 +3,7 @@ package main;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Image;
@@ -27,6 +28,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
 public class Ventana extends JFrame{
@@ -84,7 +86,8 @@ public class Ventana extends JFrame{
 		//this.registro();
 		//this.users();
 		//this.calculadora();
-		this.calculadora_layout();
+		//this.calculadora_layout();
+		this.calculadora_de_interes();
 				
 		this.setVisible(true);
 		this.repaint();
@@ -503,5 +506,115 @@ public class Ventana extends JFrame{
 		}
 		
 		
+	}
+	
+	public void calculadora_de_interes() {
+		this.setLayout(new BorderLayout(10,10));
+		
+		this.setTitle("Calculando el interés");
+		
+		JPanel panel = new JPanel();
+		panel.setLayout(new BorderLayout(10,10));
+		panel.setBackground(Color.decode("#fffee6"));
+		panel.setBorder(BorderFactory.createEmptyBorder(20,20,20,20));
+		this.add(panel, BorderLayout.CENTER);
+		
+		JLabel titulo = new JLabel("Interés");
+		titulo.setFont(new Font("Serif", Font.ITALIC,28));
+		titulo.setForeground(Color.decode("#d62431"));
+		panel.add(titulo, BorderLayout.NORTH);
+		
+		//SECCION VERDE
+		JPanel panelEntrada = new JPanel();
+		panelEntrada.setBackground(Color.decode("#72d494"));
+		panelEntrada.setLayout(new BorderLayout());
+		panelEntrada.setBorder(BorderFactory.createCompoundBorder(
+				BorderFactory.createEmptyBorder(0, 5, 5, 5),
+				BorderFactory.createTitledBorder(
+	            BorderFactory.createLineBorder(Color.decode("#5ba876"),2, true),
+	            "Calcular Interés", 
+	            TitledBorder.LEFT,
+	            TitledBorder.ABOVE_TOP)));
+		panel.add(panelEntrada, BorderLayout.CENTER);
+		
+		//gridlayout campos
+		JPanel campos = new JPanel();
+		campos.setOpaque(false);
+		campos.setLayout(new GridLayout(3,2,20,20));
+		campos.setBorder(BorderFactory.createEmptyBorder(20,40,20,40));
+		
+		JLabel lbl_capital = new JLabel("Capital:");
+		lbl_capital.setFont(new Font("Segoe Print", Font.BOLD,12));
+		JTextField txt_capital = new JTextField("1500");
+		txt_capital.setEditable(false);
+		
+		JLabel lbl_tiempo = new JLabel("Tiempo:");
+		lbl_tiempo.setFont(new Font("Segoe Print", Font.BOLD,12));
+		JTextField txt_tiempo = new JTextField("2");
+		txt_tiempo.setEditable(false);
+		
+		JLabel lbl_tasa = new JLabel("Tasa interés:");
+		lbl_tasa.setFont(new Font("Segoe Print", Font.BOLD,12));
+		JTextField txt_tasa = new JTextField("0.1");
+		
+		campos.add(lbl_capital);
+		campos.add(txt_capital);
+		campos.add(lbl_tiempo);
+		campos.add(txt_tiempo);
+		campos.add(lbl_tasa);
+		campos.add(txt_tasa);
+		
+		panelEntrada.add(campos, BorderLayout.CENTER);
+		
+		//botones
+		JPanel botones = new JPanel();
+		botones.setOpaque(false);
+	    botones.setLayout(new FlowLayout(FlowLayout.CENTER,40,10));
+		
+	    JButton calcular = new JButton("Calcular");
+	    calcular.setFont(new Font("Segoe UI Semibold", Font.ITALIC, 15));
+	    calcular.setBackground(Color.decode("#b0aeae"));
+
+	    JButton cancelar = new JButton("Cancelar");
+	    cancelar.setFont(new Font("Segoe UI Semibold", Font.ITALIC, 15));
+	    cancelar.setBackground(Color.decode("#b0aeae"));
+
+	    botones.add(calcular);
+	    botones.add(cancelar);
+	    panelEntrada.add(botones, BorderLayout.SOUTH);
+	    
+		//SECCION ROJA
+		JPanel panelResultados = new JPanel();
+		panelResultados.setLayout(new BorderLayout());
+	    panelResultados.setBackground(Color.decode("#eb656f"));
+	    //panelResultados.setBorder(BorderFactory.createEmptyBorder(20,40,20,40));
+	    panelResultados.setBorder(BorderFactory.createCompoundBorder(
+				BorderFactory.createEmptyBorder(6, 6, 6, 6),
+	            BorderFactory.createLineBorder(Color.decode("#a13a41"),2, true)
+	    ));
+	    
+	    JPanel camposResultados = new JPanel();
+		camposResultados.setOpaque(false);
+		camposResultados.setLayout(new GridLayout(3,2,20,20));
+		camposResultados.setBorder(BorderFactory.createEmptyBorder(20,60,20,60));
+	    
+	    JLabel lbl_interes = new JLabel("Interés:");
+	    lbl_interes.setFont(new Font("Segoe Print", Font.BOLD,12));
+	    JTextField txt_interes = new JTextField("315.000000000002");
+	    txt_interes.setEditable(false);
+
+	    JLabel lbl_monto = new JLabel("Monto:");
+	    lbl_monto.setFont(new Font("Segoe Print", Font.BOLD,12));
+	    JTextField txt_monto = new JTextField("1815.000000000002");
+	    txt_monto.setEditable(false);
+	    
+	    camposResultados.add(lbl_interes);
+	    camposResultados.add(txt_interes);
+	    camposResultados.add(lbl_monto);
+	    camposResultados.add(txt_monto);
+
+	    panelResultados.add(camposResultados, BorderLayout.CENTER);
+	    panel.add(panelResultados, BorderLayout.SOUTH);
+
 	}
 }
