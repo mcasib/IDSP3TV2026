@@ -1,12 +1,17 @@
 package main;
 
+import java.awt.BasicStroke;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
@@ -87,7 +92,8 @@ public class Ventana extends JFrame{
 		//this.users();
 		//this.calculadora();
 		//this.calculadora_layout();
-		this.calculadora_de_interes();
+		//this.calculadora_de_interes();
+		this.pintar();
 				
 		this.setVisible(true);
 		this.repaint();
@@ -616,5 +622,63 @@ public class Ventana extends JFrame{
 	    panelResultados.add(camposResultados, BorderLayout.CENTER);
 	    panel.add(panelResultados, BorderLayout.SOUTH);
 
+	}
+	
+	public void pintar() {
+		JPanel pane = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                
+                Graphics2D g2d = (Graphics2D) g;
+                
+                g2d.drawLine(0,0,960,680);
+                
+                g2d.setColor(Color.ORANGE);
+                g2d.drawOval(100, 100, 150, 50);
+                
+                g2d.setStroke(new BasicStroke(1));
+                g2d.setColor(Color.red);
+                g2d.drawPolygon(new int[] {300,100,500}, new int[] {100,300,300},3);
+                
+                g2d.drawRect(250, 300, 100, 100);
+                
+                g2d.setColor(Color.magenta);
+                g2d.drawRoundRect(500, 150, 100, 100, 30, 30);
+                
+                g2d.setColor(Color.blue);
+                g2d.drawArc(400, 100, 100, 100, 0, 180);
+                
+                g2d.setFont(new Font("Arial", Font.BOLD, 22));
+                g2d.drawString("Hola", 100, 100);
+                
+                g2d.setColor(Color.black);
+                g2d.fillOval(500, 50, 50, 150);
+                
+                g2d.fillPolygon(new int[] {500,300,700}, new int[] {300,500,500},3);
+                
+                g2d.setColor(Color.green);
+                g2d.fillRect(650, 500, 100, 100);
+                
+                g2d.setColor(Color.gray);
+                g2d.fillRoundRect(500, 500, 100, 100, 30, 30);
+                
+                g2d.setColor(Color.yellow);
+                g2d.fillArc(450, 150, 100, 100, 0, 180);
+                
+                BufferedImage image;
+				try {
+					image = ImageIO.read(new File("src/images/lluvia.jpg"));
+					g2d.drawImage(image, 0, 0, null);
+					
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+            }
+        };
+        pane.setSize(960, 680);
+        pane.setLocation(0, 0);
+        this.add(pane);
 	}
 }
