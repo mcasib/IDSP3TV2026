@@ -93,7 +93,7 @@ public class Ventana extends JFrame{
 		//this.calculadora();
 		//this.calculadora_layout();
 		//this.calculadora_de_interes();
-		this.pintar();
+		//this.pintar();
 				
 		this.setVisible(true);
 		this.repaint();
