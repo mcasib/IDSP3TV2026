@@ -14,22 +14,16 @@ import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
-import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
 import javax.swing.JLabel;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
 import java.awt.GridLayout;
 import java.awt.Image;
 
 import javax.swing.JComboBox;
-import javax.swing.JList;
-import org.eclipse.wb.swing.FocusTraversalOnArray;
-import java.awt.Component;
+import java.awt.Dimension;
 
 public class Ventana2 {
 
@@ -198,16 +192,35 @@ public class Ventana2 {
 		
 		
 		
-		JPanel panelBotones = new JPanel();
+		JPanel panelBotones = new JPanel(new GridLayout(3,1));
 		panelBotones.setBackground(new Color(252, 194, 116));
 
 		JButton btnNuevo = new JButton("Nuevo");
+		btnNuevo.setBackground(new Color(255,255,255));
 		JButton btnGuardar = new JButton("Guardar");
+		btnGuardar.setBackground(new Color(255,255,255));
 		JButton btnSalir = new JButton("Salir");
+		btnSalir.setBackground(new Color(255,255,255));
+		
+		Dimension tamaño = new Dimension(100,30);
+		btnNuevo.setPreferredSize(tamaño);
+		btnGuardar.setPreferredSize(tamaño);
+		btnSalir.setPreferredSize(tamaño);
 
-		panelBotones.add(btnNuevo);
-		panelBotones.add(btnGuardar);
-		panelBotones.add(btnSalir);
+		JPanel p1 = new JPanel(new FlowLayout());
+		p1.setBackground(new Color(252, 194, 116));
+		JPanel p2 = new JPanel(new FlowLayout());
+		p2.setBackground(new Color(252, 194, 116));
+		JPanel p3 = new JPanel(new FlowLayout());
+		p3.setBackground(new Color(252, 194, 116));
+
+		p1.add(btnNuevo);
+		p2.add(btnGuardar);
+		p3.add(btnSalir);
+
+		panelBotones.add(p1);
+		panelBotones.add(p2);
+		panelBotones.add(p3);
 
 		panelCentral.add(panelBotones);	
 	}
