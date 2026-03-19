@@ -27,6 +27,7 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
@@ -175,22 +176,28 @@ public class Ventana extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				String email_valido = "admi@uabcs.mx";
+				String password_valida = "1234567";
+				
 				String email = email_input.getText();
 				String password = new String(password_input.getPassword());
 				
-				if (email.equals("") || email.contains(" ")) {
-					System.out.println("Inválido");
-					email_input.setBorder(BorderFactory.createLineBorder(Color.red, 3));
+				if (!email.equals(email_valido) || !password.equals(password_valida)) {
+					JOptionPane.showMessageDialog(
+							null,
+							"Correo o contraseña incorrectos",
+							"Error",
+							JOptionPane.ERROR_MESSAGE
+					);
 					
 				} else {
-					System.out.println("Válido");
-					email_input.setBorder(BorderFactory.createLineBorder(Color.green, 3));
+					JOptionPane.showMessageDialog(
+							null,
+							"Bienvenido",
+							"Acceso correcto",
+							JOptionPane.INFORMATION_MESSAGE
+					);
 				}
-				
-				if (password.length() < 6 || password.contains(" ")) {
-					password_input.setBorder(BorderFactory.createLineBorder(Color.red, 3));
-				} else
-					password_input.setBorder(BorderFactory.createLineBorder(Color.green, 3));
 			}
 		});
 		
