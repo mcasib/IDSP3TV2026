@@ -10,10 +10,11 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
@@ -87,14 +88,14 @@ public class Ventana extends JFrame{
 		JMenuItem opt5_mi = new JMenuItem("Guardar como");
 		menu2.add(opt5_mi);
 		
-		//this.login();
-		//this.registro();
+		this.login();
+		this.registro();
 		//this.users();
 		//this.calculadora();
 		//this.calculadora_layout();
 		//this.calculadora_de_interes();
 		//this.pintar();
-		this.casa();
+		//this.casa();
 				
 		this.setVisible(true);
 		this.repaint();
@@ -105,24 +106,18 @@ public class Ventana extends JFrame{
 	public void login() {
 		ImageIcon background = new ImageIcon(getClass().getResource("/images/fondo login.png"));
 		
-		//JPanel login_container = new JPanel();
 		JLabel login_container = new JLabel(background);
-		//login_container.setSize(400, 550);
-		login_container.setSize(850, 550);
-		login_container.setLocation(50, 40);
-		//login_container.setBackground(Color.decode("#7F9C96"));
+		login_container.setSize(400, 550);
+		login_container.setLocation(50, 50);
 		login_container.setLayout(null);
 		login_container.setBorder(BorderFactory.createLineBorder(Color.decode("#dce3e6"), 3, true));
 		this.add(login_container);
 
-		
 		//AÑADIENDO ELEMENTOS
 		JLabel tag_title = new JLabel();
 		tag_title.setText("Iniciar sesión");
 		tag_title.setSize(300, 40);
-		tag_title.setLocation(280, 125);
-		//tag_title.setBackground(Color.decode("#9999ff"));
-		//tag_title.setOpaque(true);
+		tag_title.setLocation(50, 60);
 		tag_title.setFont(new Font("Forte",Font.PLAIN,35));
 		tag_title.setForeground(Color.white);
 		tag_title.setHorizontalAlignment(JLabel.CENTER);
@@ -130,59 +125,82 @@ public class Ventana extends JFrame{
 
 		JLabel tag_email = new JLabel();
 		tag_email.setText("Email");
-		tag_email.setBounds(300, 180, 150, 30);
+		tag_email.setBounds(50, 130, 150, 30);
 		tag_email.setFont(new Font("Segoe Print",Font.BOLD,12));
 		tag_email.setForeground(Color.decode("#ebf0f2"));
 		login_container.add(tag_email);
 		
 		JLabel tag_password = new JLabel();
 		tag_password.setText("Contraseña");
-		tag_password.setBounds(300, 250, 150, 30);
+		tag_password.setBounds(50, 200, 150, 30);
 		tag_password.setFont(new Font("Segoe Print",Font.BOLD,12));
 		tag_password.setForeground(Color.decode("#ebf0f2"));
 		login_container.add(tag_password);
 		
 		JLabel tag_rememberme = new JLabel();
 		tag_rememberme.setText("Recuerdame");
-		tag_rememberme.setBounds(320, 314, 150, 30);
+		tag_rememberme.setBounds(70, 265, 150, 30);
 		tag_rememberme.setFont(new Font("Segoe Print",Font.PLAIN,10));
 		tag_rememberme.setForeground(Color.decode("#dce3e6"));
 		login_container.add(tag_rememberme);
 		
 		JLabel tag_forgot = new JLabel();
 		tag_forgot.setText("¿Olvidaste tu contraseña?");
-		tag_forgot.setBounds(420, 314, 150, 30);
+		tag_forgot.setBounds(200, 265, 180, 30);
 		tag_forgot.setFont(new Font("Segoe Print",Font.PLAIN,10));
 		tag_forgot.setForeground(Color.decode("#dce3e6"));
 		login_container.add(tag_forgot);
 		
 		JTextField email_input = new JTextField();
-		email_input.setBounds(300, 210, 260, 30);
+		email_input.setBounds(50, 160, 300, 30);
 		login_container.add(email_input);
 		
 		JPasswordField password_input = new JPasswordField();
-		password_input.setBounds(300, 280, 260, 30);
+		password_input.setBounds(50, 230, 300, 30);
 		login_container.add(password_input);
 		
 		JCheckBox rememberme = new JCheckBox();
-		rememberme.setBounds(296, 310, 140, 40);
+		rememberme.setBounds(50, 270, 20, 20);
 		rememberme.setOpaque(false);
 		login_container.add(rememberme);
 		
 		JButton access_btn = new JButton();
 		access_btn.setText("Acceder");
-		access_btn.setBounds(330, 365, 200, 40);
+		access_btn.setBounds(100, 320, 200, 40);
 		access_btn.setFont(new Font("Segoe UI Semibold", Font.ITALIC, 17));
+		access_btn.setBorder(BorderFactory.createLineBorder(Color.decode("#dce3e6"), 4, true));
 		login_container.add(access_btn);
 		
+		access_btn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String email = email_input.getText();
+				String password = new String(password_input.getPassword());
+				
+				if (email.equals("") || email.contains(" ")) {
+					System.out.println("Inválido");
+					email_input.setBorder(BorderFactory.createLineBorder(Color.red, 3));
+					
+				} else {
+					System.out.println("Válido");
+					email_input.setBorder(BorderFactory.createLineBorder(Color.green, 3));
+				}
+				
+				if (password.length() < 6 || password.contains(" ")) {
+					password_input.setBorder(BorderFactory.createLineBorder(Color.red, 3));
+				} else
+					password_input.setBorder(BorderFactory.createLineBorder(Color.green, 3));
+			}
+		});
+		
 		ImageIcon small_image = new ImageIcon(getClass().getResource("/images/fondo login.png"));
-		Image img = small_image.getImage().getScaledInstance(550, 370, Image.SCALE_SMOOTH);
+		Image img = small_image.getImage().getScaledInstance(330, 280, Image.SCALE_SMOOTH);
 		ImageIcon small_scaled = new ImageIcon(img);
 
 		JLabel img_small = new JLabel(small_scaled);
-		img_small.setSize(550, 370);
-		img_small.setLocation(150, 90);
-		//img_small.setBounds(150, 100, 450, 550);
+		img_small.setSize(330, 280);
+		img_small.setLocation(35, 110);
 
 		login_container.add(img_small);
 	}
@@ -315,6 +333,39 @@ public class Ventana extends JFrame{
 		register_btn.setFont(new Font("Segoe UI Semibold", Font.ITALIC, 17));
 		register_btn.setBorder(BorderFactory.createLineBorder(Color.decode("#18272b"), 4, true));
 		rgs_container.add(register_btn);
+		
+		register_btn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String name = name_text.getText();
+				String bio = bio_text.getText();
+				
+				if (name.equals("")|| name.contains(" ")) {
+					name_text.setBorder(BorderFactory.createLineBorder(Color.red, 3));
+					
+				} else {
+					name_text.setBorder(BorderFactory.createLineBorder(Color.green, 3));
+				}
+				
+				if (bio.length() < 5 || bio.equals("")) {
+					bio_text.setBorder(BorderFactory.createLineBorder(Color.red, 3));
+				} else
+					bio_text.setBorder(BorderFactory.createLineBorder(Color.green, 3));
+				
+				if (!opt_sweet.isSelected() && !opt_salty.isSelected() && !opt_healty.isSelected()) {
+					preferences_tag.setBorder(BorderFactory.createLineBorder(Color.red, 3));
+				} else {
+					preferences_tag.setBorder(BorderFactory.createLineBorder(Color.green, 3));
+				}
+					
+				if (!accept_terms.isSelected() && !reject_terms.isSelected()) {
+					
+					terms_tag.setBorder(BorderFactory.createLineBorder(Color.red, 3));
+				} else
+					terms_tag.setBorder(BorderFactory.createLineBorder(Color.green, 3));
+			}
+		});
 	}
 	
 	public void users() {
