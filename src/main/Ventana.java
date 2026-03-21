@@ -89,19 +89,35 @@ public class Ventana extends JFrame{
 		JMenuItem opt5_mi = new JMenuItem("Guardar como");
 		menu2.add(opt5_mi);
 		
-		this.login();
-		this.registro();
+		//this.login();
+		//this.registro();
 		//this.users();
 		//this.calculadora();
 		//this.calculadora_layout();
 		//this.calculadora_de_interes();
 		//this.pintar();
 		//this.casa();
+		
+		this.router("login");
 				
 		this.setVisible(true);
 		this.repaint();
 		
 		
+	}
+	
+	public void router(String target) {
+		
+		this.getContentPane().removeAll();
+		
+		if (target.equals("login"))
+			this.login();
+		
+		if (target.equals("registro"))
+			this.registro();
+		
+		this.setVisible(true);
+		this.repaint();
 	}
 	
 	public void login() {
@@ -201,12 +217,23 @@ public class Ventana extends JFrame{
 			}
 		});
 		
+		JButton registro_btn = new JButton();
+		registro_btn.setText("¿Aún no tienes cuenta?");
+		registro_btn.setBounds(100, 380, 200, 40);
+		registro_btn.setFont(new Font("Segoe UI Semibold", Font.ITALIC, 17));
+		registro_btn.setBorder(BorderFactory.createLineBorder(Color.decode("#dce3e6"), 4, true));
+		login_container.add(registro_btn);
+		
+		registro_btn.addActionListener(e->{
+			this.router("registro");
+		});
+		
 		ImageIcon small_image = new ImageIcon(getClass().getResource("/images/fondo login.png"));
-		Image img = small_image.getImage().getScaledInstance(330, 280, Image.SCALE_SMOOTH);
+		Image img = small_image.getImage().getScaledInstance(330, 340, Image.SCALE_SMOOTH);
 		ImageIcon small_scaled = new ImageIcon(img);
 
 		JLabel img_small = new JLabel(small_scaled);
-		img_small.setSize(330, 280);
+		img_small.setSize(330, 340);
 		img_small.setLocation(35, 110);
 
 		login_container.add(img_small);
@@ -373,6 +400,18 @@ public class Ventana extends JFrame{
 					terms_tag.setBorder(BorderFactory.createLineBorder(Color.green, 3));
 			}
 		});
+		
+		JButton login_btn = new JButton();
+		login_btn.setText("<html><center>¿Ya tienes<br>cuenta?</center></html>");
+		login_btn.setBounds(50, 35, 70, 40);
+		login_btn.setFont(new Font("Segoe UI Semibold", Font.ITALIC, 11));
+		login_btn.setForeground(Color.decode("#18272b"));
+		login_btn.setBorder(BorderFactory.createLineBorder(Color.decode("#dce3e6"), 4, true));
+		rgs_container.add(login_btn);
+		
+		login_btn.addActionListener(e->{
+			this.router("login");
+		});
 	}
 	
 	public void users() {
@@ -475,374 +514,4 @@ public class Ventana extends JFrame{
 	
 	}
 	
-	public void calculadora() {	
-		JPanel panel_users = new JPanel();
-		panel_users.setSize(500, 650);
-		panel_users.setLocation(250, 50);
-		panel_users.setBackground(Color.white);
-		//panel_users.setOpaque(true);
-		panel_users.setLayout(null);
-		this.add(panel_users);
-		
-		JLabel field = new JLabel("180.00");
-		field.setSize(480, 40);
-		field.setLocation(10, 10);
-		field.setOpaque(true);
-		field.setBackground(Color.white);
-		field.setFont(new Font("Arial", Font.BOLD, 22));
-		field.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
-		panel_users.add(field);				
-		
-		
-		int cor_x = 30, cor_y = 60;
-		String [] botones = {
-			"CE", "", "", "", 
-			"7", "8", "9", "/",
-			"4", "5", "6", "*",
-			"1", "2", "3","-",
-			"0", ".", "=", "+"
-		};
-		
-		for (int i = 0; i < 20; i++) {
-			JButton ce = new JButton(botones[i]);
-			ce.setSize(100, 100);
-			ce.setLocation(cor_x, cor_y);
-			
-			cor_x += 110;
-			panel_users.add(ce);
-			
-			if(cor_x >= 470) {
-				cor_x = 30;
-				cor_y += 110;
-			}
-		}				
-	}
-	
-	public void calculadora_layout() {
-		JPanel panel_users = new JPanel();
-		panel_users.setSize(500, 650);
-		panel_users.setLocation(250, 50);
-		panel_users.setBackground(Color.white);
-		//panel_users.setOpaque(true);
-		panel_users.setLayout(null);
-		this.add(panel_users);
-		
-		BorderLayout mi_layout1 = new BorderLayout();
-		mi_layout1.setVgap(20);
-		
-		panel_users.setLayout(mi_layout1);
-		this.add(panel_users);
-		
-		JLabel field = new JLabel("180.00");
-		field.setOpaque(true);
-		field.setBackground(Color.white);
-		field.setFont(new Font("Segoe Print",Font.BOLD,25));
-		field.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
-		panel_users.add(field, BorderLayout.NORTH);
-		
-		JPanel centro = new JPanel();
-		centro.setBackground(Color.decode("#dce3e6"));
-		centro.setLayout(new GridLayout(4, 3));
-		panel_users.add(centro, BorderLayout.CENTER);
-		
-		String [] botones = { "9", "8", "7", "6", "5", "4", "3", "2", "1", "0", ".", ""};
-			
-		for (int i = 0; i < botones.length; i++) {
-			
-			JButton ce = new JButton(botones[i]);
-			ce.setSize(100, 100);
-			ce.setFont(new Font("Segoe Print", Font.BOLD, 22));
-			centro.add(ce);
-		}
-		
-		JPanel sidebar = new JPanel();
-		sidebar.setBackground(Color.gray);
-		sidebar.setLayout(new GridLayout(6,1));
-		panel_users.add(sidebar, BorderLayout.EAST);
-		
-		String [] botones2 = {  "CE", "-", "*", "/", "=", "+"};
-			
-		for (int i = 0; i < botones2.length; i++) {
-			
-			JButton ce = new JButton(botones2[i]);
-			ce.setSize(100, 100);
-			ce.setFont(new Font("Segoe Print", Font.BOLD, 22));
-			sidebar.add(ce);
-		}
-		
-		
-	}
-	
-	public void calculadora_de_interes() {
-		this.setLayout(new BorderLayout(10,10));
-		
-		this.setTitle("Calculando el interés");
-		
-		JPanel panel = new JPanel();
-		panel.setLayout(new BorderLayout(10,10));
-		panel.setBackground(Color.decode("#fffee6"));
-		panel.setBorder(BorderFactory.createEmptyBorder(20,20,20,20));
-		this.add(panel, BorderLayout.CENTER);
-		
-		JLabel titulo = new JLabel("Interés");
-		titulo.setFont(new Font("Serif", Font.ITALIC,28));
-		titulo.setForeground(Color.decode("#d62431"));
-		panel.add(titulo, BorderLayout.NORTH);
-		
-		//SECCION VERDE
-		JPanel panelEntrada = new JPanel();
-		panelEntrada.setBackground(Color.decode("#72d494"));
-		panelEntrada.setLayout(new BorderLayout());
-		panelEntrada.setBorder(BorderFactory.createCompoundBorder(
-				BorderFactory.createEmptyBorder(0, 5, 5, 5),
-				BorderFactory.createTitledBorder(
-	            BorderFactory.createLineBorder(Color.decode("#5ba876"),2, true),
-	            "Calcular Interés", 
-	            TitledBorder.LEFT,
-	            TitledBorder.ABOVE_TOP)));
-		panel.add(panelEntrada, BorderLayout.CENTER);
-		
-		//gridlayout campos
-		JPanel campos = new JPanel();
-		campos.setOpaque(false);
-		campos.setLayout(new GridLayout(3,2,20,20));
-		campos.setBorder(BorderFactory.createEmptyBorder(20,40,20,40));
-		
-		JLabel lbl_capital = new JLabel("Capital:");
-		lbl_capital.setFont(new Font("Segoe Print", Font.BOLD,12));
-		JTextField txt_capital = new JTextField("1500");
-		txt_capital.setEditable(false);
-		
-		JLabel lbl_tiempo = new JLabel("Tiempo:");
-		lbl_tiempo.setFont(new Font("Segoe Print", Font.BOLD,12));
-		JTextField txt_tiempo = new JTextField("2");
-		txt_tiempo.setEditable(false);
-		
-		JLabel lbl_tasa = new JLabel("Tasa interés:");
-		lbl_tasa.setFont(new Font("Segoe Print", Font.BOLD,12));
-		JTextField txt_tasa = new JTextField("0.1");
-		
-		campos.add(lbl_capital);
-		campos.add(txt_capital);
-		campos.add(lbl_tiempo);
-		campos.add(txt_tiempo);
-		campos.add(lbl_tasa);
-		campos.add(txt_tasa);
-		
-		panelEntrada.add(campos, BorderLayout.CENTER);
-		
-		//botones
-		JPanel botones = new JPanel();
-		botones.setOpaque(false);
-	    botones.setLayout(new FlowLayout(FlowLayout.CENTER,40,10));
-		
-	    JButton calcular = new JButton("Calcular");
-	    calcular.setFont(new Font("Segoe UI Semibold", Font.ITALIC, 15));
-	    calcular.setBackground(Color.decode("#b0aeae"));
-
-	    JButton cancelar = new JButton("Cancelar");
-	    cancelar.setFont(new Font("Segoe UI Semibold", Font.ITALIC, 15));
-	    cancelar.setBackground(Color.decode("#b0aeae"));
-
-	    botones.add(calcular);
-	    botones.add(cancelar);
-	    panelEntrada.add(botones, BorderLayout.SOUTH);
-	    
-		//SECCION ROJA
-		JPanel panelResultados = new JPanel();
-		panelResultados.setLayout(new BorderLayout());
-	    panelResultados.setBackground(Color.decode("#eb656f"));
-	    //panelResultados.setBorder(BorderFactory.createEmptyBorder(20,40,20,40));
-	    panelResultados.setBorder(BorderFactory.createCompoundBorder(
-				BorderFactory.createEmptyBorder(6, 6, 6, 6),
-	            BorderFactory.createLineBorder(Color.decode("#a13a41"),2, true)
-	    ));
-	    
-	    JPanel camposResultados = new JPanel();
-		camposResultados.setOpaque(false);
-		camposResultados.setLayout(new GridLayout(3,2,20,20));
-		camposResultados.setBorder(BorderFactory.createEmptyBorder(20,60,20,60));
-	    
-	    JLabel lbl_interes = new JLabel("Interés:");
-	    lbl_interes.setFont(new Font("Segoe Print", Font.BOLD,12));
-	    JTextField txt_interes = new JTextField("315.000000000002");
-	    txt_interes.setEditable(false);
-
-	    JLabel lbl_monto = new JLabel("Monto:");
-	    lbl_monto.setFont(new Font("Segoe Print", Font.BOLD,12));
-	    JTextField txt_monto = new JTextField("1815.000000000002");
-	    txt_monto.setEditable(false);
-	    
-	    camposResultados.add(lbl_interes);
-	    camposResultados.add(txt_interes);
-	    camposResultados.add(lbl_monto);
-	    camposResultados.add(txt_monto);
-
-	    panelResultados.add(camposResultados, BorderLayout.CENTER);
-	    panel.add(panelResultados, BorderLayout.SOUTH);
-
-	}
-	
-	public void pintar() {
-		JPanel pane = new JPanel() {
-            @Override
-            protected void paintComponent(Graphics g) {
-                super.paintComponent(g);
-                
-                Graphics2D g2d = (Graphics2D) g;
-                
-                g2d.drawLine(0,0,960,680);
-                
-                g2d.setColor(Color.ORANGE);
-                g2d.drawOval(100, 100, 150, 50);
-                
-                g2d.setStroke(new BasicStroke(1));
-                g2d.setColor(Color.red);
-                g2d.drawPolygon(new int[] {300,100,500}, new int[] {100,300,300},3);
-                
-                g2d.drawRect(250, 300, 100, 100);
-                
-                g2d.setColor(Color.magenta);
-                g2d.drawRoundRect(500, 150, 100, 100, 30, 30);
-                
-                g2d.setColor(Color.blue);
-                g2d.drawArc(400, 100, 100, 100, 0, 180);
-                
-                g2d.setFont(new Font("Arial", Font.BOLD, 22));
-                g2d.drawString("Hola", 100, 100);
-                
-                g2d.setColor(Color.black);
-                g2d.fillOval(500, 50, 50, 150);
-                
-                g2d.fillPolygon(new int[] {500,300,700}, new int[] {300,500,500},3);
-                
-                g2d.setColor(Color.green);
-                g2d.fillRect(650, 500, 100, 100);
-                
-                g2d.setColor(Color.gray);
-                g2d.fillRoundRect(500, 500, 100, 100, 30, 30);
-                
-                g2d.setColor(Color.yellow);
-                g2d.fillArc(450, 150, 100, 100, 0, 180);
-                
-                BufferedImage image;
-				try {
-					image = ImageIO.read(new File("src/images/lluvia.jpg"));
-					g2d.drawImage(image, 0, 0, null);
-					
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-            }
-        };
-        pane.setSize(960, 680);
-        pane.setLocation(0, 0);
-        this.add(pane);
-	}
-	
-	public void casa() {
-		 JPanel panel_casa = new JPanel() {
-	         @Override
-	         protected void paintComponent(Graphics g) {
-	             super.paintComponent(g);
-	             Graphics2D g2d = (Graphics2D) g;
-	             
-	             //cielo
-	             g2d.setColor(Color.decode("#4aaab5"));
-	             g2d.fillRect(0, 0, 960, 400);
-	             
-	             //cerca fondo
-	             g2d.setColor(Color.decode("#db9a44"));
-	             g2d.fillRect(0, 320, 960, 40);
-	             
-	             //cerca for
-	             g2d.setColor(Color.decode("#ffb450"));
-	             for (int i = 0; i < 960; i += 40) {
-	                 g2d.fillRect(i, 290, 30, 110);
-
-	                 int[] px = {i, i + 15, i + 30};
-	                 int[] py = {290, 270, 290};
-	                 g2d.fillPolygon(px, py, 3);
-	             }
-	             
-	             //tierra
-	             g2d.setColor(Color.decode("#78501e"));
-	             g2d.fillRect(0, 510, 960, 110);
-     
-	             //pasto
-	             g2d.setColor(Color.decode("#088521"));
-	             g2d.fillRect(0, 400, 960, 100);
-	             
-	             //pasto2
-	             g2d.setColor(Color.decode("#056919"));
-	             g2d.fillRect(0, 390, 960, 20);
-
-	             //arena?
-	             g2d.setColor(Color.decode("#f7c88b"));
-	             g2d.fillRect(0, 470, 960, 40);
-	             
-	             //pared
-	             g2d.setColor(Color.decode("#f0c878"));
-	             g2d.fillRect(330, 150, 300, 200);
-	             
-	             //lineas pared
-	             g2d.setStroke(new BasicStroke(2));
-	             g2d.setColor(Color.decode("#78501e"));
-	             for (int y = 170; y < 350; y += 23) {
-	            	    g2d.drawLine(330, y, 630, y);
-	             }
-	             
-	             //piso gris
-	             g2d.setColor(Color.decode("#707370"));
-	             g2d.fillRect(310, 350, 340, 40);
-	             
-	             //chimenea
-	             g2d.setColor(Color.decode("#707370"));
-	             g2d.fillRect(555, 70, 50, 60);
-	             g2d.setColor(Color.decode("#707370"));
-	             g2d.fillRect(549, 60, 62, 20);
-	             
-	             //techo
-	             int[] xPoints = {300, 430, 670};
-	             int[] yPoints = {150, 40, 150};
-	             g2d.setColor(Color.decode("#b00b05"));
-	             g2d.fillPolygon(xPoints, yPoints, 3);
-	             
-	             //puerta
-	             g2d.setColor(Color.decode("#8c5a14"));
-	             g2d.fillRect(360, 197, 80, 150);
-	             
-	             //marco puerta
-	             g2d.setStroke(new BasicStroke(3));
-	             g2d.setColor(Color.decode("#5a320a"));
-	             g2d.drawRect(360, 199, 80, 150);
-	             
-	             //llaev puerta
-	             g2d.setColor(Color.white);
-	             g2d.fillOval(420, 270, 10, 10);
-	             
-	             //ventana
-	             g2d.setColor(Color.white);
-	             g2d.fillRect(500, 200, 80, 80);
-	             
-	             //marco de v
-	             g2d.setStroke(new BasicStroke(3));
-	             g2d.setColor(Color.decode("#b00b05"));
-	             g2d.drawRect(500, 200, 80, 80);
-	             
-	             //div v
-	             g2d.setStroke(new BasicStroke(3));
-	             g2d.drawLine(540, 200, 540, 280);
-	             g2d.drawLine(500, 240, 580, 240);
-	             
-	             //gris v marco
-	             g2d.setColor(Color.decode("#707370"));
-	             g2d.fillRect(492, 281, 97, 10);
-	         }
-	     }; 
-	     panel_casa.setSize(960, 680);
-	     panel_casa.setLocation(0, 0);
-	     this.add(panel_casa);
-	}
 }
