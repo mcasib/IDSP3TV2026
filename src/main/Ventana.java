@@ -63,31 +63,7 @@ public class Ventana extends JFrame{
 			e.printStackTrace();
 		}
 		
-		JMenuBar barra = new JMenuBar();
-		this.setJMenuBar(barra);
 		
-		JMenu menu1 = new JMenu("Archivo");
-		barra.add(menu1);
-		
-		JMenuItem opt1_mi = new JMenuItem("Abrir");
-		menu1.add(opt1_mi);
-		
-		JMenuItem opt2_mi = new JMenuItem("Nuevo");
-		menu1.add(opt2_mi);
-		
-		JMenuItem opt3_mi = new JMenuItem("Cerrar");
-		menu1.add(opt3_mi);
-		
-		menu1.addSeparator();
-		
-		JMenu menu2 = new JMenu("Guardar");
-		menu1.add(menu2);
-		
-		JMenuItem opt4_mi = new JMenuItem("Guardar");
-		menu2.add(opt4_mi);
-		
-		JMenuItem opt5_mi = new JMenuItem("Guardar como");
-		menu2.add(opt5_mi);
 		
 		//this.login();
 		//this.registro();
@@ -97,8 +73,9 @@ public class Ventana extends JFrame{
 		//this.calculadora_de_interes();
 		//this.pintar();
 		//this.casa();
+		this.menu();
 		
-		this.supermario();
+		//this.supermario();
 		
 		//this.router("login");
 				
@@ -515,143 +492,48 @@ public class Ventana extends JFrame{
 
 	
 	}
-	
-	public void supermario() {
-		JPanel panel_supermario = new JPanel() {
-	        @Override
-	        protected void paintComponent(Graphics g) {
-	            super.paintComponent(g);
 
-	            //cielo
-	            g.setColor(Color.decode("#4aaab5"));
-	            g.fillRect(0, 0, getWidth(), getHeight());
-
-	            
-	            //piso
-	            g.setColor(new Color(180, 100, 50));
-	            for (int i = 0; i < getWidth(); i += 40) {
-	                for (int j = 450; j < getHeight(); j += 40) {
-	                    g.fillRect(i, j, 40, 40);
-	                    g.setColor(Color.BLACK);
-	                    g.drawRect(i, j, 40, 40);
-	                    g.setColor(Color.decode("#b46432"));
-	                }
-	            }
-	            
-	            g.setColor(Color.decode("#e3ac62"));
-	            g.fillRect(0, 450, 960, 40);
-
-	            //tuberia
-	            //cuerpo
-	            g.setColor(Color.decode("#17960e"));
-	            g.fillRect(560, 350, 80, 100);
-	            g.setColor(Color.BLACK);
-	            g.drawRect(560, 350, 80, 100);
-
-	            //boca
-	            g.setColor(Color.decode("#17960e"));
-	            g.fillRect(550, 320, 100, 40);
-	            g.setColor(Color.BLACK);
-	            g.drawRect(550, 320, 100, 40);
-	            
-	            //bloques
-	            g.setColor(Color.decode("#678acf"));
-	            g.fillRect(290, 280, 130, 170);
-	            g.setColor(Color.BLACK);
-	            g.drawRect(290, 280, 130, 170);
-	            g.setColor(Color.decode("#ced7d9"));
-	            g.fillOval(300, 290, 15, 15);
-	            g.setColor(Color.decode("#ced7d9"));
-	            g.fillOval(395, 290, 15, 15);
-	            g.setColor(Color.decode("#ced7d9"));
-	            g.fillOval(395, 425, 15, 15);
-	            g.setColor(Color.black);
-	            g.fillRect(420, 300, 20, 150);
-	            
-	            g.setColor(Color.decode("#f2bdc6"));
-	            g.fillRect(210, 320, 130, 130);
-	            g.setColor(Color.BLACK);
-	            g.drawRect(210, 320, 130, 130);
-	            g.setColor(Color.decode("#ced7d9"));
-	            g.fillOval(220, 330, 15, 15);
-	            g.setColor(Color.decode("#ced7d9"));
-	            g.fillOval(315, 330, 15, 15);
-	            g.setColor(Color.decode("#ced7d9"));
-	            g.fillOval(220, 425, 15, 15);
-	            g.setColor(Color.decode("#ced7d9"));
-	            g.fillOval(315, 425, 15, 15);
-	            g.setColor(Color.black);
-	            g.fillRect(340, 340, 20, 110);
-
-	            g.setColor(Color.decode("#3d8f45"));
-	            g.fillRect(830, 320, 130, 130);
-	            g.setColor(Color.BLACK);
-	            g.drawRect(830, 320, 130, 130);
-	            g.setColor(Color.decode("#ced7d9"));
-	            g.fillOval(840, 330, 15, 15);
-	            g.fillOval(840, 425, 15, 15);
-	            
-	            g.setColor(Color.decode("#ff9650"));
-	            g.fillRect(100, 250, 60, 60);
-	            g.fillRect(850, 170, 60, 60);
-	            g.fillRect(300, 100, 60, 60);
-	            g.fillRect(360, 100, 60, 60);
-
-	            g.setColor(Color.BLACK);
-	            g.drawRect(100, 250, 60, 60);
-	            g.drawRect(850, 170, 60, 60);
-	            g.drawRect(300, 100, 60, 60);
-	            g.drawRect(360, 100, 60, 60);
-	            
-	            g.setColor(Color.black);
-	            g.fillRect(105, 255, 5, 5);
-	            g.setColor(Color.black);
-	            g.fillRect(105, 300, 5, 5);
-	            g.setColor(Color.black);
-	            g.fillRect(150, 255, 5, 5);
-	            g.setColor(Color.black);
-	            g.fillRect(150, 300, 5, 5);
-	            
-	            g.fillRect(855, 175, 5, 5);
-	            g.fillRect(855, 220, 5, 5);
-	            g.fillRect(900, 175, 5, 5);
-	            g.fillRect(900, 220, 5, 5);
-
-	            g.fillRect(305, 105, 5, 5);
-	            g.fillRect(305, 150, 5, 5);
-	            g.fillRect(350, 105, 5, 5);
-	            g.fillRect(350, 150, 5, 5);
-
-	            g.fillRect(365, 105, 5, 5);
-	            g.fillRect(365, 150, 5, 5);
-	            g.fillRect(410, 105, 5, 5);
-	            g.fillRect(410, 150, 5, 5);
-	        }
-	    };
-
-	    panel_supermario.setBounds(0, 0, 960, 680);
-	    this.add(panel_supermario);
+	public void menu() {
+		JMenuBar barra = new JMenuBar();
+		this.setJMenuBar(barra);
+		
+		JMenu menu1 = new JMenu("Archivo");
+		barra.add(menu1);
+		
+		JMenuItem opt1_mi = new JMenuItem("Abrir");
+		menu1.add(opt1_mi);
+		
+		JMenuItem opt2_mi = new JMenuItem("Nuevo");
+		menu1.add(opt2_mi);
+		
+		JMenuItem opt3_mi = new JMenuItem("Cerrar");
+		menu1.add(opt3_mi);
+		
+		menu1.addSeparator();
+		
+		JMenu menu2 = new JMenu("Guardar");
+		menu1.add(menu2);
+		
+		JMenuItem opt4_mi = new JMenuItem("Guardar");
+		menu2.add(opt4_mi);
+		
+		JMenuItem opt5_mi = new JMenuItem("Guardar como");
+		menu2.add(opt5_mi);
+		
+		JMenu menu3 = new JMenu("Cuenta");
+		barra.add(menu3);
+		
+		JMenuItem opt_access = new JMenuItem("Iniciar sesión");
+		opt_access.addActionListener(e -> {
+			this.router("login");
+		});
+		menu3.add(opt_access);
+		
+		JMenuItem opt_register = new JMenuItem("Registrarse");
+		opt_register.addActionListener(e -> {
+			this.router("registro");
+		});
+		menu3.add(opt_register);
+		
 	}
-	
-	
-	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
