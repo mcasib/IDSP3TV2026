@@ -95,6 +95,27 @@ public class Ventana extends JFrame{
 		if (target.equals("registro"))
 			this.registro();
 		
+		if (target.equals("recover"))
+			this.recover();
+		
+		if (target.equals("alta"))
+			this.alta();
+		
+		if (target.equals("baja"))
+			this.baja();
+		
+		if (target.equals("consultar"))
+			this.consultar();
+		
+		if (target.equals("create_user"))
+			this.create_user();
+		
+		if (target.equals("access_system"))
+			this.access_system();
+		
+		if (target.equals("forgot_password"))
+			this.forgot_password();
+		
 		this.setVisible(true);
 		this.repaint();
 	}
@@ -492,6 +513,132 @@ public class Ventana extends JFrame{
 
 	
 	}
+	
+	public void recover() {
+		JPanel recover_panel = new JPanel();
+		recover_panel.setBounds(270, 50, 400, 550);
+		recover_panel.setOpaque(true);
+		recover_panel.setBackground(Color.decode("#c472a3"));
+		recover_panel.setLayout(null);
+		this.add(recover_panel);
+		
+		JLabel tag_title = new JLabel();
+		tag_title.setText("Recuperación de cuenta");
+		tag_title.setSize(300, 40);
+		tag_title.setLocation(50, 60);
+		tag_title.setFont(new Font("Forte",Font.PLAIN,25));
+		tag_title.setForeground(Color.white);
+		tag_title.setHorizontalAlignment(JLabel.CENTER);
+		recover_panel.add(tag_title);
+	}
+	
+	public void alta() {
+		JPanel alta_panel = new JPanel();
+		alta_panel.setBounds(270, 50, 400, 550);
+		alta_panel.setOpaque(true);
+		alta_panel.setBackground(Color.decode("#8bc472"));
+		alta_panel.setLayout(null);
+		this.add(alta_panel);
+		
+		JLabel tag_title = new JLabel();
+		tag_title.setText("Alta");
+		tag_title.setSize(300, 40);
+		tag_title.setLocation(50, 60);
+		tag_title.setFont(new Font("Forte",Font.PLAIN,25));
+		tag_title.setForeground(Color.white);
+		tag_title.setHorizontalAlignment(JLabel.CENTER);
+		alta_panel.add(tag_title);
+	}
+	
+	public void baja() {
+		JPanel baja_panel = new JPanel();
+		baja_panel.setBounds(270, 50, 400, 550);
+		baja_panel.setOpaque(true);
+		baja_panel.setBackground(Color.decode("#c4b172"));
+		baja_panel.setLayout(null);
+		this.add(baja_panel);
+		
+		JLabel tag_title = new JLabel();
+		tag_title.setText("Baja");
+		tag_title.setSize(300, 40);
+		tag_title.setLocation(50, 60);
+		tag_title.setFont(new Font("Forte",Font.PLAIN,25));
+		tag_title.setForeground(Color.white);
+		tag_title.setHorizontalAlignment(JLabel.CENTER);
+		baja_panel.add(tag_title);
+	}
+	
+	public void consultar() {
+		JPanel panel_consultar = new JPanel();
+		panel_consultar.setBounds(270, 50, 400, 550);
+		panel_consultar .setOpaque(true);
+		panel_consultar .setBackground(Color.decode("#d44a4a"));
+		panel_consultar .setLayout(null);
+		this.add(panel_consultar );
+		
+		JLabel tag_title = new JLabel();
+		tag_title.setText("Consultar");
+		tag_title.setSize(300, 40);
+		tag_title.setLocation(50, 60);
+		tag_title.setFont(new Font("Forte",Font.PLAIN,25));
+		tag_title.setForeground(Color.white);
+		tag_title.setHorizontalAlignment(JLabel.CENTER);
+		panel_consultar.add(tag_title);
+	}
+	
+	public void create_user() {
+		JPanel panel_create = new JPanel();
+		panel_create.setBounds(270, 50, 400, 550);
+		panel_create.setOpaque(true);
+		panel_create.setBackground(Color.decode("#4acbd4"));
+		panel_create.setLayout(null);
+		this.add(panel_create);
+		
+		JLabel tag_title = new JLabel();
+		tag_title.setText("¿Cómo crear un usuario?");
+		tag_title.setSize(300, 40);
+		tag_title.setLocation(50, 60);
+		tag_title.setFont(new Font("Forte",Font.PLAIN,25));
+		tag_title.setForeground(Color.white);
+		tag_title.setHorizontalAlignment(JLabel.CENTER);
+		panel_create.add(tag_title);
+	}
+	
+	public void access_system() {
+		JPanel panel_access_sys = new JPanel();
+		panel_access_sys.setBounds(270, 50, 400, 550);
+		panel_access_sys.setOpaque(true);
+		panel_access_sys.setBackground(Color.decode("#4d42c2"));
+		panel_access_sys.setLayout(null);
+		this.add(panel_access_sys);
+		
+		JLabel tag_title = new JLabel();
+		tag_title.setText("¿Cómo acceder al sistema?");
+		tag_title.setSize(300, 40);
+		tag_title.setLocation(50, 60);
+		tag_title.setFont(new Font("Forte",Font.PLAIN,25));
+		tag_title.setForeground(Color.white);
+		tag_title.setHorizontalAlignment(JLabel.CENTER);
+		panel_access_sys.add(tag_title);
+	}
+	
+	public void forgot_password() {
+		JPanel panel_password = new JPanel();
+		panel_password.setBounds(270, 50, 400, 550);
+		panel_password.setOpaque(true);
+		panel_password.setBackground(Color.decode("#55247d"));
+		panel_password.setLayout(null);
+		this.add(panel_password);
+		
+		JLabel tag_title = new JLabel();
+		tag_title.setText("¿Qué pasa si olvidé mi contraseña?");
+		tag_title.setSize(300, 40);
+		tag_title.setLocation(50, 60);
+		tag_title.setFont(new Font("Forte",Font.PLAIN,20));
+		tag_title.setForeground(Color.white);
+		tag_title.setHorizontalAlignment(JLabel.CENTER);
+		panel_password.add(tag_title);
+	}
 
 	public void menu() {
 		JMenuBar barra = new JMenuBar();
@@ -536,30 +683,51 @@ public class Ventana extends JFrame{
 		menu3.add(opt_register);
 		
 		JMenuItem opt_recover = new JMenuItem("Recuperación de cuenta");
+		opt_recover.addActionListener(e -> {
+			this.router("recover");
+		});
 		menu3.add(opt_recover);
 		
 		JMenu menu4 = new JMenu("Usuarios");
 		barra.add(menu4);
 		
 		JMenuItem opt_alta = new JMenuItem("Alta");
+		opt_alta.addActionListener(e -> {
+			this.router("alta");
+		});
 		menu4.add(opt_alta);
 		
 		JMenuItem opt_baja = new JMenuItem("Baja");
+		opt_baja.addActionListener(e -> {
+			this.router("baja");
+		});
 		menu4.add(opt_baja);
 		
 		JMenuItem opt_consultar = new JMenuItem("Consultar");
+		opt_consultar.addActionListener(e -> {
+			this.router("consultar");
+		});
 		menu4.add(opt_consultar);
 		
 		JMenu menu5 = new JMenu("Ayuda");
 		barra.add(menu5);
 		
 		JMenuItem opt_create = new JMenuItem("¿Cómo crear un usuario?");
+		opt_create.addActionListener(e -> {
+			this.router("create_user");
+		});
 		menu5.add(opt_create);
 		
 		JMenuItem opt_access_sys = new JMenuItem("¿Cómo acceder al sistema?");
+		opt_access_sys.addActionListener(e -> {
+			this.router("access_system");
+		});
 		menu5.add(opt_access_sys);
 		
 		JMenuItem opt_password = new JMenuItem("¿Qué pasa si olvidé mi contraseña?");
+		opt_password.addActionListener(e -> {
+			this.router("forgot_password");
+		});
 		menu5.add(opt_password);
 		
 	}
