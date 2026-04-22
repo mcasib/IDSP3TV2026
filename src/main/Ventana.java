@@ -13,6 +13,8 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -127,7 +129,7 @@ public class Ventana extends JFrame{
         add(panelIzquierdo, BorderLayout.WEST);
 
         //panel centro
-        JPanel lienzo = new JPanel();
+        Lienzo lienzo = new Lienzo(tamano_combo);
         lienzo.setBackground(Color.WHITE);
         lienzo.setBorder(BorderFactory.createLineBorder(Color.GRAY, 2));
         add(lienzo, BorderLayout.CENTER);
@@ -198,6 +200,69 @@ public class Ventana extends JFrame{
         panelInferior.add(btnGuardar);
 
         add(panelInferior, BorderLayout.SOUTH);
+        
+        btnLimpiar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                lienzo.limpiar();
+            }
+        });
     }
+    
+    class Lienzo extends JPanel implements MouseMotionListener {
+
+        BufferedImage imagen;
+        Graphics2D g2;
+        int xAnterior, yAnterior;
+        JComboBox combo;
+
+        public Lienzo(JComboBox combo) {
+            this.combo = combo;
+            addMouseMotionListener(this);
+        }
+
+        public void inicializar() {
+            if (imagen == null) {
+                imagen = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_RGB);
+                g2 = imagen.createGraphics();
+                g2.setColor(Color.WHITE);
+                g2.fillRect(0, 0, getWidth(), getHeight());
+                g2.setColor(Color.BLACK);
+            }
+        }
+
+        public void limpiar() {
+            inicializar();
+            g2.setColor(Color.WHITE);
+            g2.fillRect(0, 0, getWidth(), getHeight());
+            g2.setColor(Color.BLACK);
+            repaint();
+        }
+
+        public void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            inicializar();
+            g.drawImage(imagen, 0, 0, null);
+        }
+
+        public void mouseDragged(MouseEvent e) {
+            inicializar();
+
+            int grosor = Integer.parseInt(combo.getSelectedItem().toString());
+
+            g2.setStroke(new BasicStroke(grosor));
+            g2.drawLine(xAnterior, yAnterior, e.getX(), e.getY());
+
+            xAnterior = e.getX();
+            yAnterior = e.getY();
+
+            repaint();
+        }
+
+        public void mouseMoved(MouseEvent e) {
+            xAnterior = e.getX();
+            yAnterior = e.getY();
+        }
+    }
+
 	
 }
